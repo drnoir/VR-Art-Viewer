@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AR Viewer</title>
+    <meta name="description" content="AR Viewer Test • A-Frame">
+    <script src="bundle.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>
+          <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+      
+          <!-- Images. -->
+          <img id="city" src="sky.jpg">
+          <img id="groundTexture" src="floor.jpg">
+          <img id="boxTexture" src="test.jpg">
+          <img id="wallTexture" src="brick.jpg">
+
+          <a-mixin id="test"text="align: center; width: 8;value: test"></a-mixin>
+  
+        </a-assets>
+        <!--  texts  -->
+        
+        <a-text mixin="AR Viewer" font="kelsonsans" position="1 0.5 -1" wrap-count="50"></a-text>
+
+        <!-- 360-degree image. -->
+        <a-sky id="image-360" radius="20" src="#city">
+        </a-sky>
+
+        <a-plane src="#groundTexture" rotation="-90 0 0" width="30" height="30"></a-plane>
+        <!-- design box -->
+        <a-entity material="src: #boxTexture" id="box" geometry="primitive: box"  width="6" height="10" depth="0.001" position="0 3 -9">
+          
+          <!-- Reference marks, so we can see where the label is aligning.  -->
+          <a-entity mixin="marker" position="-0.5 0 0"></a-entity>
+          <a-entity mixin="marker" position="-0.25 0 0"></a-entity>
+          <a-entity mixin="marker" position="0 0 0"></a-entity>
+          <a-entity mixin="marker" position="0.25 0 0"></a-entity>
+          <a-entity mixin="marker" position="0.5 0 0"></a-entity>
+
+          <a-text color="red" align="center" baseline="top" width="1" position="0 0.5 0"
+          font="aileronsemibold"
+          value="Design1 $5.99" ></a-text>
+
+
+
+        </a-entity>
+
+      
+        <!-- front wall -->
+        <a-entity  material="src: #wallTexture" id="box" geometry="primitive: box"  scale = "30 15 2" position="0 2 -10"></a-entity>
+          <!-- side walls -->
+        <a-entity material="src: #wallTexture" id="box" geometry="primitive: box"  scale = "30 15 2" position="-10 2 -4" rotation="0 90 0"></a-entity>
+        <a-entity material="src: #wallTexture" id="box" geometry="primitive: box"  scale = "30 15 2" position="15 2 -4" rotation="0 90 0"></a-entity>
+         <!-- back wall -->
+         <a-entity material="src: #wallTexture" id="box" geometry="primitive: box"  scale = "30 15 2" position="0 2 10"></a-entity>
+
+        <a-entity position="0 1 -5">
+        <!-- Link we will build. -->
+        <a-entity class="link"></a-entity>
+       
+        <!-- Camera + Cursor. -->
+        <a-camera>
+          <a-cursor id="cursor">
+        
+            <a-animation begin="click" easing="ease-in" attribute="scale"
+                         fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                         from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+                      
+          </a-cursor>
+        </a-camera>
+      </a-scene>
+  </body>
+</html>

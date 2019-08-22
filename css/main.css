@@ -1,0 +1,12 @@
+#main-ui{
+    background-color: white;
+    bottom:0;
+    position: absolute;
+    opacity: 0.8;
+    border: solid 1px black;
+    z-index: 1;
+    padding:10px;
+    visibility: hidden;
+    font-size:1em;
+    font-family:Arial, Helvetica, sans-serif;
+}
